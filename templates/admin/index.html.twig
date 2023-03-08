@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin index{% endblock %}
+{% block title %}Backoffice{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_categories_index') }}">Categories management</a>
+
+    <h1>Backoffice</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('app_categories_index') }}">Categories management</a>
+        </li>
+        <li>
+            <a href="{{ path('app_posts_index') }}">Posts management</a>
+        </li>
+    </ul>
+
 {% endblock %}
