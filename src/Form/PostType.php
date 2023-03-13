@@ -2,8 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Post;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,12 +18,17 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('slug')
             ->add('introText')
-            ->add('publishDate')
+            ->add('publishDate', DateType::class)
             ->add('published')
-            ->add('category')
-        ;
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name'
+            ])
+            ->add('textContents', CollectionType::class, [
+            'entry_type' => TextContentType::class,
+            'entry_options' => ['label' => false],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
