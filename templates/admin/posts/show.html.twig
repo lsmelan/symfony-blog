@@ -31,6 +31,16 @@
                 <th>Published</th>
                 <td>{{ post.published ? 'Yes' : 'No' }}</td>
             </tr>
+            {% for textContent in post.textContents %}
+                <tr>
+                    <th>Content Title</th>
+                    <td>{{ textContent.title }}</td>
+                </tr>
+                <tr>
+                    <th>Content Text</th>
+                    <td>{{ textContent.text }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

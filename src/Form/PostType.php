@@ -18,17 +18,20 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('introText')
-            ->add('publishDate', DateType::class)
-            ->add('published')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name'
             ])
+            ->add('introText')
+            ->add('publishDate', DateType::class, [
+                'widget' => 'single_text'
+            ])
+            ->add('published')
             ->add('textContents', CollectionType::class, [
-            'entry_type' => TextContentType::class,
-            'entry_options' => ['label' => false],
-        ]);
+                'entry_type' => TextContentType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

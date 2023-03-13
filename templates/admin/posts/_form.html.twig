@@ -1,4 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+    <ul class="textContents" data-prototype="{{ form_widget(form.textContents.vars.prototype)|e('html_attr') }}"></ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="textContents">Add Text Content</button>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
