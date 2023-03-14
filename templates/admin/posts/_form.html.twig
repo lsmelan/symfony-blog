@@ -7,8 +7,10 @@
 <h3>Text Contents</h3>
 <ul class="textContents" data-prototype="{{ form_widget(form.textContents.vars.prototype)|e('html_attr') }}">
     {% for textContent in form.textContents %}
-        <li>{{ form_row(textContent.title) }}</li>
-        <li>{{ form_row(textContent.text) }}</li>
+        <li>
+            {{ form_row(textContent.title) }}
+            {{ form_row(textContent.text) }}
+        </li>
     {% endfor %}
 </ul>
 <button type="button" class="add_item_link" data-collection-holder-class="textContents">Add Text Content</button>
@@ -43,13 +45,32 @@
 
         // Display the form in the page in an li, before the "Add a tag" link li
         var $newFormLi = $('<li></li>').append(newForm);
+
+        // add a delete link to the new form
+        addTagFormDeleteLink($newFormLi);
         // Add the new form at the end of the list
         $collectionHolder.append($newFormLi)
+    }
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormButton = $('<button type="button">Delete this tag</button>');
+        $tagFormLi.append($removeFormButton);
+
+        $removeFormButton.on('click', function(e) {
+            // remove the li for the tag form
+            $tagFormLi.remove();
+        });
     }
 
     jQuery(document).ready(function () {
         // Get the ul that holds the collection of tags
         var $textContentsCollectionHolder = $('ul.textContents');
+
+        // add a delete link to all of the existing tag form li elements
+        $textContentsCollectionHolder.find('li').each(function() {
+            addTagFormDeleteLink($(this));
+        });
+
         // count the current form inputs we have (e.g. 2), use that as the new
         // index when inserting a new item (e.g. 2)
         $textContentsCollectionHolder.data('index', $textContentsCollectionHolder.find('input').length);
