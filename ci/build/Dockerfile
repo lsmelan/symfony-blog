@@ -21,6 +21,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && curl -sS https://get.symfony.com/cli/installer | bash \
     && mv $HOME/.symfony5/bin/symfony /usr/local/bin/symfony
 
+# Install nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - &&\
+apt-get install -y nodejs
+
 # Add user for application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www

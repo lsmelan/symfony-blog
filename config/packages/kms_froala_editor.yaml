@@ -1,0 +1,7 @@
+kms_froala_editor:
+  includeJS: false
+  includeCSS: false
+  language: 'fr'
+  heightMax: 200
+  width: 600
+  attribution: false
