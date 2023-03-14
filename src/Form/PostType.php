@@ -30,7 +30,8 @@ class PostType extends AbstractType
             ->add('textContents', CollectionType::class, [
                 'entry_type' => TextContentType::class,
                 'entry_options' => ['label' => false],
-                'allow_add' => true,
+                'prototype' => true,
+                'allow_add' => true
             ]);
     }
 

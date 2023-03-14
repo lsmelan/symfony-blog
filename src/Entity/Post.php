@@ -53,7 +53,7 @@ class Post
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity=TextContent::class, mappedBy="post", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=TextContent::class, mappedBy="post", orphanRemoval=true, cascade={"persist"})
      */
     private $textContents;
 
