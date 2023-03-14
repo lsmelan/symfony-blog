@@ -35,8 +35,7 @@ class PostsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->save($postRepository, $post);
-
+            $postRepository->add($post);
             return $this->redirectToRoute('app_posts_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,7 +64,7 @@ class PostsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->save($postRepository, $post);
+            $postRepository->add($post);
             return $this->redirectToRoute('app_posts_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -85,14 +84,5 @@ class PostsController extends AbstractController
         }
 
         return $this->redirectToRoute('app_posts_index', [], Response::HTTP_SEE_OTHER);
-    }
-
-    private function save(PostRepository $postRepository, Post $post): void
-    {
-        $postRepository->add($post, false);
-        foreach ($post->getTextContents() as $textContent) {
-            $textContent->setPost($post);
-        }
-        $postRepository->add($post);
     }
 }

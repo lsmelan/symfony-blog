@@ -31,7 +31,8 @@ class PostType extends AbstractType
                 'entry_type' => TextContentType::class,
                 'entry_options' => ['label' => false],
                 'prototype' => true,
-                'allow_add' => true
+                'allow_add' => true,
+                'by_reference' => false,
             ]);
     }
 
