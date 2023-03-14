@@ -3,6 +3,10 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
+    {% for notice in app.flashes('notice') %}
+        {{ notice }}
+    {% endfor %}
+
     <h1>Category index</h1>
 
     <table class="table">
