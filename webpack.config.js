@@ -56,7 +56,13 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
+
+    // processes files ending in .less
+    .enableLessLoader()
+
+    // processes files ending in .styl
+    .enableStylusLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
