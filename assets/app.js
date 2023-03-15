@@ -65,7 +65,7 @@ function addFormToCollection($collectionHolderClass) {
 }
 
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormButton = $('<button type="button">Delete this tag</button>');
+    var $removeFormButton = $('<button type="button" class="btn btn-primary">Delete this tag</button>');
     $tagFormLi.append($removeFormButton);
 
     $removeFormButton.on('click', function(e) {

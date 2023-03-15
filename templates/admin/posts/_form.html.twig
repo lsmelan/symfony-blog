@@ -13,7 +13,7 @@
         </li>
     {% endfor %}
 </ul>
-<button type="button" class="add_item_link" data-collection-holder-class="textContents">Add Text Content</button>
-<br/>
-<button class="btn">{{ button_label|default('Save') }}</button>
+<button type="button" class="add_item_link btn btn-primary" data-collection-holder-class="textContents">Add Text Content</button>
+<br/><br/>
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
