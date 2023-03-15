@@ -79,12 +79,16 @@ class CategoriesController extends AbstractController
      */
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
-            if ($category->getPosts()->count() === 0 ) {
-                $categoryRepository->remove($category);
-            } else {
-                $this->addFlash('notice', 'There are posts under this category.');
-            }
+        $categoryId = $category->getId();
+        $csrfToken = $request->request->get('_token');
+        if (!$this->isCsrfTokenValid('delete'.$categoryId, $csrfToken)) {
+            return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        if ($category->getPosts()->count() == 0) {
+            $categoryRepository->remove($category);
+        } else {
+            $this->addFlash('notice', 'There are posts under this category.');
         }
 
         return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
